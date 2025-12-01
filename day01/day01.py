@@ -13,23 +13,15 @@ def parse_input(filename):
 
 
 def calc(data):
-
     res = 0
     start = 50
-    num = 0
     for i in data:
-        if len(i) == 2:
-            num = i[1]
+        direction = i[0]
+        num = int(i[1:])
+        if direction == 'L':
+            start = (start - num) % 100
         else:
-            num = i[1] + i[2]
-        if i[0] == 'L':
-            start -= int(num)
-            if start < 0:
-                start = 100 + start
-        else:
-            start += int(num)
-            if start >= 100:
-                start = start - 100
+            start = (start + num) % 100
         print(start)
         if start == 0:
             res += 1
